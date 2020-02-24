@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -38,11 +40,20 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.MyViewHolder> {
         holder.textViewItem.setText(item.getItemName());
 
         boolean isExpanded = myData.getSubItems().get(position).isExpanded();
-        holder.expandableLayout.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+        //holder.expandableLayout.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
 
         if (!isExpanded){
+            holder.expandableLayout.setVisibility(View.GONE);
             holder.imageView.animate().rotation(360F).start();
         }else {
+            //creating an animation
+            Animation slideDown = AnimationUtils.loadAnimation(context, R.anim.slide_down);
+
+            //toggling visibility
+            holder.expandableLayout.setVisibility(View.VISIBLE);
+
+            //adding sliding effect
+            holder.expandableLayout.startAnimation(slideDown);
             holder.imageView.animate().rotation(180F).start();
         }
     }

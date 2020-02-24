@@ -20,7 +20,7 @@ public class DataHolder {
         populateList(items, "Item ", 4);
         populateList(subItems, "Sub item ", 1);
         populateList(innerSubItems, "Inner sub item ", 2);
-        populateList(elements, "elements ", 2);
+        populateList(elements, "elements  ", 2);
     }
 
     private void populateList(List<Item> listItems, String item_type, int itemNumber){

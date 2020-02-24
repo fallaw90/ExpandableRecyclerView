@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -34,7 +36,14 @@ public class MyAdapter4 extends RecyclerView.Adapter<MyAdapter4.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         Item item = myData.getElements().get(position);
+        //creating an animation
+        Animation slideDown = AnimationUtils.loadAnimation(context, R.anim.slide_down);
+
+        //toggling visibility
         holder.textViewItem.setText(item.getItemName());
+
+        //adding sliding effect
+        holder.expandableLayout.startAnimation(slideDown);
     }
 
     @Override
